@@ -39,7 +39,7 @@ views/
 ## ⚙️ Setup
 
 ```bash
-git clone https://github.com/<Arjun-figuring-out>/<repo>.git
+git clone https://github.com/Arjun-explores-Arjun-learn/url-shortener-nodejs-.git
 cd <repo>
 npm install
 ```
@@ -84,10 +84,11 @@ npm start
 # Admin UrlShortner
 ![adminUrlShortner](./screenshots/05_admin_urlShortner.png)
 
-## 🚀 Live Demo
+## 🚀 Live Demo (Local)
 
-For login- "http://localhost:7001/login"
-For signup- "http://localhost:7001/signup"
+- Login: [http://localhost:7001/login](http://localhost:7001/login)  
+- Signup: [http://localhost:7001/signup](http://localhost:7001/signup)
+
 
 ## 🧠 Learnings
 
