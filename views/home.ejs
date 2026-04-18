@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shortener</title>
+
+  <style>
+    /*Basic UI styling for now */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 40px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    input {
+      padding: 8px;
+      margin: 5px 0;
+      width: 250px;
+    }
+
+    button {
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 80%;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f4f4f4;
+    }
+
+    .url-box {
+      margin-top: 15px;
+      padding: 10px;
+      background: #f0f8ff;
+      border: 1px solid #ccc;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <p>User Role: <%= user ? user.role : "NO USER" %></p>
+
+
+  <h1>🔗 URL Shortener</h1>
+
+  <!-- 🔐 Admin-only button -->
+<% if (user && user.role === "ADMIN") { %>
+  <div style="margin-bottom: 15px;">
+    <a href="/admin/urls">
+      <button style="
+        background-color:#111827;
+        color:white;
+        border:none;
+        padding:10px 14px;
+        border-radius:6px;
+        cursor:pointer;
+      ">
+        🔐 Admin Dashboard
+      </button>
+    </a>
+  </div>
+<% } %>
+
+  <!--SHOW GENERATED SHORT URL AFTER CREATION -->
+  <% if (locals.id) { %>
+    <div class="url-box">
+      <p>
+        Generated URL:
+        <!--Correct route format (/:shortId) -->
+        <a href="http://localhost:7001/<%= id %>" target="_blank">
+          http://localhost:7001/<%= id %>
+        </a>
+      </p>
+
+      <!--Copy button improves UX -->
+      <button onclick="copyToClipboard()">Copy</button>
+    </div>
+  <% } %>
+
+  <!--FORM TO CREATE SHORT URL -->
+  <div>
+    <form method="POST" action="/url">
+
+      <!-- 🔹 Original URL input -->
+      <label>Enter your original URL</label><br/>
+      <input 
+        type="text" 
+        placeholder="https://example.com" 
+        name="url" 
+        required
+      />
+
+      <br/>
+
+      <!--Custom alias (new feature) -->
+      <label>Custom Alias (optional)</label><br/>
+      <input 
+        type="text" 
+        placeholder="e.g. arjun" 
+        name="customAlias"
+      />
+
+      <br/>
+
+      <!--Expiry input (NEW FEATURE) -->
+      <label>Expiry (in minutes, optional)</label><br/>
+      <input 
+        type="number" 
+        placeholder="e.g. 60" 
+        name="expiresIn"
+      />
+
+      <br/>
+
+      <button type="submit">Generate</button>
+    </form>
+  </div>
+
+  <!--TABLE: SHOW USER'S URLS -->
+  <div>
+    <% if (locals.urls) { %>
+
+      <table>
+        <thead>
+          <tr>
+            <th>S.NO</th>
+            <th>Short URL</th>
+            <th>Original URL</th>
+            <th>Clicks</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% urls.forEach((url, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+
+              <!--Clickable short URL -->
+              <td>
+                <a href="http://localhost:7001/<%= url.shortId %>" target="_blank">
+                  <%= url.shortId %>
+                </a>
+              </td>
+
+              <!-- 🔹 Original redirect URL -->
+              <td><%= url.redirectURL %></td>
+
+              <!-- 🔹 Click count -->
+              <td><%= url.visitHistory.length %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+
+    <% } %>
+  </div>
+
+  <!--COPY TO CLIPBOARD SCRIPT -->
+  <script>
+    function copyToClipboard() {
+      //Uses EJS variable dynamically
+      const text = "http://localhost:7001/<%= locals.id %>";
+
+      navigator.clipboard.writeText(text)
+        .then(() => alert("Copied to clipboard!"))
+        .catch(() => alert("Copy failed"));
+    }
+  </script>
+
+</body>
+</html>

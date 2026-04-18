@@ -1,0 +1,108 @@
+# 🔗 URL Shortener (Node.js + Express + MongoDB)
+
+A production-inspired URL shortener with **JWT authentication, role-based access (Admin/User), analytics, custom aliases, and link expiry**.
+
+## ✨ Features
+
+* 🔐 **Authentication (JWT + cookies)**
+* 👤 **User-specific URLs**
+* 👑 **Admin dashboard**
+* ✏️ **Custom short aliases**
+* ⏳ **Link expiry (time-based)**
+* 📊 **Basic analytics (click count + timestamps)**
+* 🚫 **Rate limiting (anti-spam)**
+* 🧼 **Input validation (Joi)**
+* 🎯 **Clean MVC architecture**
+
+## 🧱 Tech Stack
+
+* Backend: Node.js, Express
+* DB: MongoDB (Mongoose)
+* Auth: JWT + Cookies
+* Views: EJS
+* Validation: Joi
+
+## 🗂️ Folder Structure
+
+```
+src/
+├── controllers/
+├── routes/
+├── middleware/
+├── models/
+├── services/
+├── validators/
+└── index.js
+views/
+```
+
+## ⚙️ Setup
+
+```bash
+git clone https://github.com/<Arjun-figuring-out>/<repo>.git
+cd <repo>
+npm install
+```
+
+Create `.env`:
+
+```
+PORT=7001
+MONGO_URL= mongodb://127.0.0.1:27017/
+JWT_SECRET=Arjun@TheAwesome_1
+```
+
+Run:
+
+```bash
+npm start
+```
+
+## 🔌 API Endpoints (core)
+
+* `POST /user/signup`
+* `POST /user/login`
+* `POST /url` → create short URL
+* `GET /:shortId` → redirect
+* `GET /url/analytics/:shortId` → analytics
+* `GET /admin/urls` → admin dashboard (protected)
+
+## 📸 Screenshots
+
+# Signup Page
+![signup](./screenshots/01_signup.png)
+
+# Signup Page
+![login](./screenshots/02_login.png)
+
+# User Dashboard
+![userDashboard](./screenshots/03_user_urlShortner.png)
+
+# Admin Dashboard
+![adminDashboard](./screenshots/04_adminDashboard.png)
+
+# Admin UrlShortner
+![adminUrlShortner](./screenshots/05_admin_urlShortner.png)
+
+## 🚀 Live Demo
+
+For login- "http://localhost:7001/login"
+For signup- "http://localhost:7001/signup"
+
+## 🧠 Learnings
+
+* Implemented **Authentication & Authorization** using JWT (stateless sessions with cookies)
+* Understood how **JWT-based stateless authentication** works (token generation, verification, middleware protection)
+* Built **role-based access control (RBAC)** to differentiate Admin and Normal users
+* Designed a **clean MVC architecture** with separation of concerns (controllers, services, middleware)
+* Handled **real-world edge cases** like duplicate users, invalid inputs, and API abuse (rate limiting)
+* Learned how to structure a backend project for **scalability and maintainability**
+
+
+## 📌 Future Improvements
+
+* QR code generation
+
+---
+
+**Author:** <Arjun Singh Rawat>
