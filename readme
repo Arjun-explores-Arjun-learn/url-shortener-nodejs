@@ -39,8 +39,8 @@ views/
 ## ⚙️ Setup
 
 ```bash
-git clone https://github.com/Arjun-explores-Arjun-learn/url-shortener-nodejs-.git
-cd <repo>
+git clone https://github.com/Arjun-explores-Arjun-learn/url-shortener-nodejs.git
+cd url-shortener-nodejs
 npm install
 ```
 
@@ -48,8 +48,8 @@ Create `.env`:
 
 ```
 PORT=7001
-MONGO_URL= mongodb://127.0.0.1:27017/
-JWT_SECRET=Arjun@TheAwesome_1
+MONGO_URL=mongodb://127.0.0.1:27017/url-shortener
+JWT_SECRET=your_secret_key
 ```
 
 Run:
@@ -69,20 +69,20 @@ npm start
 
 ## 📸 Screenshots
 
-# Signup Page
-![signup](./screenshots/01_signup.png)
+### 🧾 Signup Page
+![Signup](./screenshots/01_signup.png)
 
-# Signup Page
-![login](./screenshots/02_login.png)
+### 🔐 Login Page
+![Login](./screenshots/02_login.png)
 
-# User Dashboard
-![userDashboard](./screenshots/03_user_urlShortner.png)
+### 👤 User Dashboard
+![User Dashboard](./screenshots/03_user_urlShortner.png)
 
-# Admin Dashboard
-![adminDashboard](./screenshots/04_adminDashboard.png)
+### 🛠️ Admin Dashboard
+![Admin Dashboard](./screenshots/04_adminDashboard.png)
 
-# Admin UrlShortner
-![adminUrlShortner](./screenshots/05_admin_urlShortner.png)
+### 🔗 Admin URL Shortener
+![Admin URL Shortener](./screenshots/05_admin_urlShortner.png)
 
 ## 🚀 Live Demo (Local)
 
