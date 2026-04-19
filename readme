@@ -39,7 +39,7 @@ views/
 ## ⚙️ Setup
 
 ```bash
-git clone https://github.com/Arjun-explores-Arjun-learn/url-shortener-nodejs.git
+git clone https://github.com/Arjun-explores-Arjun-learn/url-shortener-nodejs
 cd url-shortener-nodejs
 npm install
 ```
