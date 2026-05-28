@@ -16,6 +16,8 @@ const userRoute = require("./routes/user");
 const URL = require("./models/url");
 
 const app = express();
+app.set('trust proxy', 1);  //since we r behind a proxy(render), we need to trust the first proxy to get the correct IP for rate limiting
+//true would mean trusting all proxies and vice versa for false, in our case we trust only the first proxy
 const PORT=process.env.PORT || 7001;  //since render assigns its own port dynamically
 
 // DB CONNECTION
