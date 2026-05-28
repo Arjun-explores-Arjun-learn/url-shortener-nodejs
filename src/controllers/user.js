@@ -36,8 +36,11 @@ async function handleUserLogin(req, res) {
   const token = setUser(user);
 
   // AUTHORIZATION
-  res.cookie('token', token); // 1st argument(name) sec is value
-  return res.redirect("/");
+  res.cookie('token', token, {  //arugment(name, value,options)
+   httpOnly: true,                                        // JS cannot read this token...prevents XSS attacks(NOT CSRF (cross site request forgery))
+   secure: process.env.NODE_ENV === 'production',         // HTTPS only on Render, works on HTTP locally...we create an environment variable to check if we are in production or development
+   maxAge: 7 * 24 * 60 * 60 * 1000,                      // 7 days(expiration time)
+});  return res.redirect("/");
 }
 
 module.exports = {

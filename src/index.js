@@ -16,7 +16,7 @@ const userRoute = require("./routes/user");
 const URL = require("./models/url");
 
 const app = express();
-const PORT = process.env.PORT || 7001;
+const PORT=process.env.PORT || 7001;  //since render assigns its own port dynamically
 
 // DB CONNECTION
 connectToMongoDB(process.env.MONGO_URL)
