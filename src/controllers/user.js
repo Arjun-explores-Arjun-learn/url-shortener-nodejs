@@ -6,11 +6,17 @@ async function handleUserSignup(req, res) {
   try {
     const { name, email, password } = req.body;
 
-    await User.create({
+    const user=await User.create({
       name,
       email,
       password,
     });
+    const token= setUser(user);  //generatng token and set cookie
+    res.cookie('token', token,{
+      httpOnly:true,
+      seccure:process.env.NODE_ENV === 'production',
+      maxAge: 7*24*60*60*1000,
+    })
 
     return res.redirect("/");
 
@@ -39,7 +45,7 @@ async function handleUserLogin(req, res) {
   res.cookie('token', token, {  //arugment(name, value,options)
    httpOnly: true,                                        // JS cannot read this token...prevents XSS attacks(NOT CSRF (cross site request forgery))
    secure: process.env.NODE_ENV === 'production',         // HTTPS only on Render, works on HTTP locally...we create an environment variable to check if we are in production or development
-   maxAge: 7 * 24 * 60 * 60 * 1000,                      // 7 days(expiration time)
+   maxAge: 7*24*60*60*1000,                      // 7 days(expiration time)
 });  return res.redirect("/");
 }
 
